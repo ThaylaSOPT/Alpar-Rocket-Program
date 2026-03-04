@@ -1,0 +1,131 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding-top: 60px;
+    background-color: #ffb6d9;
+}
+
+/* Desafio 3 e 4:navbar e flexbox */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffb6d9;
+    height: 60px;
+    z-index: 1000;
+    display: flex;
+    /* Flexbox aplicado */
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #c3267c;
+}
+
+.navbar a {
+    color: #c3267c;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #cc1b65;
+}
+
+/* Desafio 5: grid */
+.container {
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    grid-template-areas:
+        "header header"
+        "menu content"
+        "footer footer";
+    width: 100%;
+    margin: 0;
+    background: white;
+}
+
+header {
+    grid-area: header;
+    background-color: #c3267c;
+    color: white;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Desafio 5: menu lateral no grid */
+.menu-lateral {
+    grid-area: menu;
+    background-color: #fff0f6;
+    padding: 40px 20px;
+    border-right: 1px solid #ffb6d9;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow: auto;
+}
+
+.menu-lateral h3 {
+    color: #c3267c;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-lateral li {
+    margin: 15px 0;
+}
+
+.menu-lateral a {
+    text-decoration: none;
+    color: #c3267c;
+    display: block;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+/* Desafio 5: conteudo no grid*/
+main {
+    grid-area: content;
+    padding: 20px;
+    min-height: 1500px;
+}
+
+/* Desafio 4: Alinhamento das seções com Flexbox */
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 10%;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+}
+
+h2 {
+    margin-top: 0;
+    color: #c3267c;
+}
+
+/* desafio 4 e 5: Rodapé com Flexbox e Área de Grid */
+footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: #e472ab;
+    color: white;
+}
+
+footer a {
+    color: #770b4c;
+    text-decoration: none;
+}

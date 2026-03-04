@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fce4ec;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    position: relative;
+    width: 350px;
+    height: 500px;
+}
+
+#carta {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+#container:hover #carta {
+    transform: rotateY(180deg);
+
+}
+
+#frente,
+#atras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(123, 2, 78, 0.604);
+}
+
+#frente {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.canto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.canto span {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.canto img {
+    width: 25px;
+}
+
+.inferior {
+    align-self: flex-end;
+    transform: rotate(180deg);
+}
+
+.centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centro img {
+    width: 180px;
+}
+
+#atras {
+    background-image: url('./Images/verso.jpeg');
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    color: deeppink;
+}
