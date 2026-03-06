@@ -114,40 +114,68 @@ header p {
     margin: 0;
 }
 
-aside {
+#menu {
     background-color: #4684ff;
     color: #ffffff;
     padding: 1.6rem 1.6rem 0.8rem;
-    display: none;
-    width: 20.0rem;
+
+    display: flex;
+    width: 100%;
+    z-index: 999;
     position: fixed;
     top: 10.0rem;
     bottom: 0;
+    left: -110%;
+    transition: 0.3s;
 }
 
-aside a {
+#menu.active {
+    left: 0;
+}
+
+#menu a {
     color: #ffffff;
 }
 
-nav {
+#menu nav {
     height: 100%;
+    width: 100%;
+    display: flex;
 }
 
-nav ul {
+#menu nav ul {
     list-style: none;
     padding: 0;
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto;
+
 }
 
-nav ul a {
-    display: block;
+#menu nav ul li {
+    flex: 1;
+    display: flex;
+}
+
+#menu nav ul a {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0.7;
     transition: 0.3s;
     position: relative;
     width: 100%;
     overflow: hidden;
+    display: flex;
+    text-align: center;
+    font-size: 3.2rem;
 }
 
-nav ul a::before {
+#menu nav ul a::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -158,13 +186,13 @@ nav ul a::before {
     transition: 0.3s;
 }
 
-nav ul a.active,
-nav ul a:hover {
+#menu nav ul a.active,
+#menu nav ul a:hover {
     opacity: 1;
 }
 
-nav ul a.active::before,
-nav ul a:hover::before {
+#menu nav ul a.active::before,
+#menu nav ul a:hover::before {
     left: 0%;
 }
 
@@ -226,15 +254,15 @@ nav ul a:hover::before {
     opacity: 1;
 }
 
-.menu-button:active div {
+.menu-button.active div {
     transform: rotate(-45deg);
 }
 
-.menu-button:active div::before {
+.menu-button.active div::before {
     opacity: 0;
 }
 
-.menu-button:active div::after {
+.menu-button.active div::after {
     left: 0;
     bottom: 0;
     transform: rotate(-90deg);
@@ -245,8 +273,23 @@ nav ul a:hover::before {
         display: none;
     }
 
-    aside {
-        display: flex;
+    #menu {
+        left: 0;
+        width: 20rem;
+    }
+
+    #menu nav ul {
+        justify-content: flex-start;
+        gap: 16px;
+    }
+
+    #menu nav ul li {
+        max-height: fit-content;
+    }
+
+    #menu nav ul a {
+        font-size: 1.6rem;
+        height: fit-content;
     }
 
     main {
