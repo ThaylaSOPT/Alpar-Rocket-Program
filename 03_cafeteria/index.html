@@ -5,159 +5,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Element Coffee - Menu</title>
+    <link rel="stylesheet" href="./assets/style.css">
+
 </head>
 
 <body>
-    <img src="./assets/images/Logo.png" alt="Logo da Cafeteria" width="150" />
+
+    <button id="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <aside id="sidebar">
+        <a href="#bebidas">Bebidas</a>
+        <a href="#salgados">Salgados</a>
+        <a href="#doces">Doces</a>
+        <a href="#funcionamento">Funcionamento</a>
+        <a href="../index.html" class="port">Voltar ao Portfólio</a>
+    </aside>
+    <div id="sidebar-overlay"></div>
+
+    <img class="logo" src="./assets/images/logoCafe.png" alt="Logo da Cafeteria" />
     <h1>Element Coffee</h1>
     <p>Seja bem-vindo ao nosso café</p>
 
-    <h2>Horários de Funcionamento</h2>
+    <h2 id="funcionamento">Horários de Funcionamento</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Horários</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                    <th>Sábado</th>
+                    <th>Domingos e Feriados</th>
+                </tr>
+            </thead>
 
-    <table border="1px" cellspacing="0" cellpadding="8px" style=" text-align: center;">
-        <thead>
-            <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
-                <th>Domingos e Feriados</th>
-            </tr>
-        </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Manhã</strong></td>
+                    <td>08:00 - 12:00</td>
+                    <td rowspan="2">Fechado</td>
+                    <td>08:00 - 12:00</td>
+                    <td>08:00 - 12:00</td>
+                    <td>08:00 - 12:00</td>
+                    <td>08:00 - 12:00</td>
+                    <td rowspan="2">08:00 - 12:00</td>
+                </tr>
 
-        <tbody>
-            <tr>
-                <td><strong>Manhã</strong></td>
-                <td>08:00 - 12:00</td>
-                <td rowspan="2">Fechado</td>
-                <td>08:00 - 12:00</td>
-                <td>08:00 - 12:00</td>
-                <td>08:00 - 12:00</td>
-                <td>08:00 - 12:00</td>
-                <td rowspan="2">08:00 - 12:00</td>
-            </tr>
+                <tr>
+                    <td><strong>Tarde</strong></td>
+                    <td>14:00 - 18:00</td>
+                    <td>14:00 - 18:00</td>
+                    <td>14:00 - 18:00</td>
+                    <td>14:00 - 18:00</td>
+                    <td>14:00 - 18:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-            <tr>
-                <td><strong>Tarde</strong></td>
-                <td>14:00 - 18:00</td>
-                <td>14:00 - 18:00</td>
-                <td>14:00 - 18:00</td>
-                <td>14:00 - 18:00</td>
-                <td>14:00 - 18:00</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>Bebidas</h2>
+    <h2 id="bebidas">Bebidas</h2>
     <ul>
         <li>Cappuccino
             <br>
-            <img src="./assets/images/Capuccino.jpg" alt="Cappuccino" width="150" />
-            <ul>
-                <li>Café</li>
-                <li>Leite</li>
-                <li>Chocolate</li>
-            </ul>
+            <img src="./assets/images/capuccino.jpg" alt="Cappuccino" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Café</li>
+                    <li>Leite</li>
+                    <li>Chocolate</li>
+                </ul>
+            </div>
         </li>
         <li>Matcha Latte
             <br>
-            <img src="./assets/images/Matcha Latte.jpg" alt="Matcha Latte" width="150" />
-            <ul>
-                <li>Matcha em pó</li>
-                <li>Leite</li>
-            </ul>
-            <ol type="I">
-                <li>Quente</li>
-                <li>Gelado</li>
-            </ol>
+            <img src="./assets/images/matcha.jpg" alt="Matcha Latte" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Matcha em pó</li>
+                    <li>Leite</li>
+                </ul>
+                <ol type="I">
+                    <li>Quente</li>
+                    <li>Gelado</li>
+                </ol>
+            </div>
         </li>
         <li>Suco Natural
             <br>
-            <img src="./assets/images/Suco de frutas.png" alt="Suco de Frutas" width="150" />
-            <ul>
-                <li>Frutas frescas
-                    <ol type="I">
-                        <li>Abacaxi</li>
-                        <li>Acerola</li>
-                        <li>Laranja</li>
-                        <li>Limão</li>
-                        <li>Manga</li>
-                        <li>Morango</li>
-                    </ol>
-                </li>
-                <li>Sem açúcar</li>
-            </ul>
+            <img src="./assets/images/sucoDeFrutas.png" alt="Suco de Frutas" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Frutas frescas
+                        <ol type="I">
+                            <li>Abacaxi</li>
+                            <li>Acerola</li>
+                            <li>Laranja</li>
+                            <li>Limão</li>
+                            <li>Manga</li>
+                            <li>Morango</li>
+                        </ol>
+                    </li>
+                    <li>Sem açúcar</li>
+                </ul>
+            </div>
         </li>
     </ul>
-    <h2>Salgados</h2>
+    <h2 id="salgados">Salgados</h2>
     <ul>
         <li>Pão de Queijo
             <br>
-            <img src="./assets/images/Pão de queijo.webp" alt="Pão de Queijo" width="150" />
-            <ul>
-                <li>Polvilho</li>
-                <li>Queijo</li>
-                <li>Ovos</li>
-            </ul>
+            <img src="./assets/images/paoDeQueijo.webp" alt="Pão de Queijo" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Polvilho</li>
+                    <li>Queijo</li>
+                    <li>Ovos</li>
+                </ul>
+            </div>
         </li>
         <li>Empadão
             <br>
-            <img src="./assets/images/Empadão.jpg" alt="Empadão de Frango" width="150" />
-            <ul>
-                <li>Ovos</li>
-                <li>leite</li>
-                <li>Glúten</li>
-                <li>Frango</li>
-            </ul>
+            <img src="./assets/images/empadao.jpg" alt="Empadão de Frango" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Ovos</li>
+                    <li>leite</li>
+                    <li>Glúten</li>
+                    <li>Frango</li>
+                </ul>
+            </div>
         </li>
         <li>Sanduíche Natural
             <br>
-            <img src="./assets/images/sanduiche.jpg" alt="Sanduíche" width="150" />
-            <ul>
-                <li>Pão integral</li>
-                <li>Frango</li>
-                <li>Alface</li>
-            </ul>
+            <img src="./assets/images/sanduiche.jpg" alt="Sanduíche" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Pão integral</li>
+                    <li>Frango</li>
+                    <li>Alface</li>
+                </ul>
+            </div>
         </li>
     </ul>
-    <h2>Doces</h2>
+    <h2 id="doces">Doces</h2>
     <ul>
         <li>Bolo de Chocolate
             <br>
-            <img src="./assets/images/Bolo.jpg" alt="Bolo de Cocolate" width="150" />
-            <ul>
-                <li>Farinha</li>
-                <li>Chocolate</li>
-                <li>Ovos</li>
-            </ul>
+            <img src="./assets/images/boloDeChocolate.jpg" alt="Bolo de Cocolate" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Farinha</li>
+                    <li>Chocolate</li>
+                    <li>Ovos</li>
+                </ul>
+            </div>
         </li>
         <li>Cinnamon Roll
             <br>
-            <img src="./assets/images/cinnamon.jpg" alt="Cinnamon Roll" width="150" />
-            <ul>
-                <li>Canela</li>
-                <li>Glúten</li>
-                <li>Leite</li>
-                <li>Ovos</li>
-            </ul>
+            <img src="./assets/images/cinnamon.jpg" alt="Cinnamon Roll" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Canela</li>
+                    <li>Glúten</li>
+                    <li>Leite</li>
+                    <li>Ovos</li>
+                </ul>
+            </div>
         </li>
         <li>Torta de Limão
             <br>
-            <img src="./assets/images/Torta de Limão.jpg" alt="Torta de Limão" width="150" />
-            <ul>
-                <li>Leite condensado</li>
-                <li>Limão</li>
-                <li>Biscoito</li>
-            </ul>
+            <img src="./assets/images/tortaDeLimao.jpg" alt="Torta de Limão" />
+            <button class="accordion-btn">Ver detalhes</button>
+            <div class="accordion-content">
+                <ul>
+                    <li>Leite condensado</li>
+                    <li>Limão</li>
+                    <li>Biscoito</li>
+                </ul>
+            </div>
         </li>
     </ul>
 
     <br>
 
-    <a href="../index.html">Voltar ao Portfólio</a>
+    <script src="./assets/script.js"></script>
 
 </body>
 
