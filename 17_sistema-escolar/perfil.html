@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Acadêmico - Amarílis Tech</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <div id="screen-painel">
+        <button class="btn-sair" onclick="window.location.href='index.html'">Sair</button>
+        <h2>Dados do Perfil</h2>
+
+        <div id="dados-container">
+        </div>
+    </div>
+
+    <script src="./assets/script.js"></script>
+    <script>
+        window.onload = function () {
+            const logado = JSON.parse(localStorage.getItem("usuarioLogado"));
+            if (!logado) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const container = document.getElementById("dados-container");
+            container.innerHTML = `
+                <div class="perfil-card">
+                    <div style="background: #fe6347; color: white; padding: 1rem; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        ${logado.nome.charAt(0)}
+                    </div>
+                    <div>
+                        <h3>${logado.nome}</h3>
+                        <p><strong>Cargo:</strong> ${logado.tipo}</p>
+                        <p><strong>Detalhe:</strong> ${logado.info}</p>
+                    </div>
+                </div>
+            `;
+        };
+    </script>
+</body>
+
+</html>

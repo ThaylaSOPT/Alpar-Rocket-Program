@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="escolaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarílis Tech School</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+
+    <div id="screen-login" class="container">
+        <div class="lado-esquerdo">
+            <div class="texto-logo">
+                <p>Educação que floresce com tecnologia.</p>
+            </div>
+        </div>
+        <div class="lado-direito">
+            <div class="login-box">
+                <h2>Login</h2>
+                <input type="email" id="email" placeholder="E-mail (seunome@amarilis.edu.com)">
+                <input type="password" id="senha" placeholder="Senha">
+                <button class="btn-principal" id="btn-entrar" type="button">Entrar</button>
+                <p id="erro" style="color: red; margin-top: 1rem;"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-painel" style="display:none;" ng-controller="AppController">
+        <button class="btn-sair" onclick="location.reload()">Sair</button>
+        <h2 ng-bind="tituloPainel"></h2>
+
+        <div class="perfil-card">
+            <img ng-if="usuarioLogado.tipo == 'Aluno'" src="./assets/images/aluno.png" style="width: 5rem;">
+            <img ng-if="usuarioLogado.tipo == 'Professor'" src="./assets/images/professor.png" style="width: 5rem;">
+            <div>
+                <h3 ng-bind="usuarioLogado.nome"></h3>
+                <p>{{ usuarioLogado.tipo }} | {{ usuarioLogado.info }}</p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <input type="text" ng-model="filtroNome" placeholder="Buscar por nome..."
+                style="flex: 2; margin-bottom: 0;">
+            <select ng-model="filtroTipo" style="flex: 1; margin-bottom: 0;">
+                <option value="">Todos os Tipos</option>
+                <option value="Aluno">Alunos</option>
+                <option value="Professor">Professores</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 1rem; font-size: 0.9rem;">
+            <span>Total Alunos: <strong>{{ (usuariosLista | filter:{tipo:'Aluno'}).length }}</strong></span> |
+            <span>Total Professores: <strong>{{ (usuariosLista | filter:{tipo:'Professor'}).length }}</strong></span> |
+            <span>Geral: <strong>{{ usuariosLista.length }}</strong></span>
+        </div>
+
+        <ul style="list-style: none;">
+            <li class="usuario-item" ng-repeat="u in usuariosLista | filter:filtroNome | filter:{tipo:filtroTipo}">
+                <div>
+                    <strong>{{ u.nome | uppercase }}</strong><br>
+                    <small>{{ u.tipo }} - Ingresso: {{ u.dataCadastro | date:'dd/MM/yyyy' }}</small>
+                </div>
+                <button class="btn-remover-small" ng-click="removerUsuario($index)">✕</button>
+            </li>
+        </ul>
+
+        <hr style="margin: 2rem 0;">
+
+        <div class="form-container">
+            <h3>Novo Cadastro Acadêmico</h3>
+            <form name="formCadastro" ng-submit="adicionarUsuario(formCadastro)" novalidate>
+                <input type="text" name="nome" ng-model="novoUsuario.nome" placeholder="Nome Completo" required>
+                <p class="erro-val" ng-show="formCadastro.nome.$touched && formCadastro.nome.$error.required">Nome
+                    obrigatório.</p>
+
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="text" name="user" ng-model="novoUsuario.userEmail" placeholder="Usuário" required
+                        style="flex: 1;">
+                    <span style="margin-bottom: 1rem;">@amarilis.edu.com</span>
+                </div>
+
+                <select ng-model="novoUsuario.tipo" required>
+                    <option value="">Selecione o Cargo</option>
+                    <option value="Aluno">Aluno</option>
+                    <option value="Professor">Professor</option>
+                </select>
+
+                <input type="text" ng-model="novoUsuario.complemento" placeholder="Turma ou Disciplina" required>
+
+                <button type="submit" class="btn-principal" ng-disabled="formCadastro.$invalid">
+                    <span ng-if="!processando">Cadastrar Registro</span>
+                    <span ng-if="processando">Salvando...</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./assets/script.js"></script>
+    <script src="./assets/app.js"></script>
+</body>
+
+</html>

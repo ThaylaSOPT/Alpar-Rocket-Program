@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação Regex - Desafio 9</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Validador de Dados</h2>
+        <form id="meuFormulario">
+            <div class="field">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" placeholder="Somente letras e espaços">
+                <span id="msg-nome" class="msg"></span>
+            </div>
+
+            <div class="field">
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" placeholder="exemplo@email.com">
+                <span id="msg-email" class="msg"></span>
+            </div>
+
+            <div class="field">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" placeholder="000.000.000-00">
+                <span id="msg-cpf" class="msg"></span>
+            </div>
+
+            <button type="submit">Validar</button>
+        </form>
+    </div>
+
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>

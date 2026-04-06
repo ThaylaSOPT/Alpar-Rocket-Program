@@ -1,0 +1,157 @@
+/* RESET E FUNDO */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(rgb(27, 38, 59), rgb(13, 27, 42));
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-attachment: fixed;
+
+}
+
+.btn-voltar {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.5rem;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.btn-voltar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+.casa {
+    width: 90%;
+    max-width: 25rem;
+    aspect-ratio: 4 / 3;
+    margin: 2rem auto;
+    background-image: url("./images/casa.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(1.2) contrast(1.2);
+    position: relative;
+}
+
+.janela {
+    width: 15%;
+    height: 13%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 0.12rem solid #ccc;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#quarto {
+    top: 60%;
+    left: 25%;
+}
+
+#sala {
+    top: 60%;
+    right: 25%;
+}
+
+/* LUZ */
+.ligado {
+    background-color: rgba(255, 224, 102, 1);
+    color: #000;
+    box-shadow: 0 0 1.5rem #ffe066, 0 0 2.5rem #ffd700;
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+
+    margin-top: 1rem;
+    padding: 0 0.6rem;
+}
+
+button {
+    flex: 1 1 45%;
+    max-width: 15rem;
+
+    padding: 0.6rem;
+
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+button[data-acao="ligar"] {
+    background: rgb(76, 175, 80);
+    color: white;
+}
+
+button[data-acao="desligar"] {
+    background: rgb(229, 57, 53);
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+#status {
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+@media (min-width: 37.5rem) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .janela {
+        font-size: 0.9rem;
+    }
+
+    button {
+        display: inline-block;
+        width: auto;
+    }
+}
+
+@media (min-width: 56.25rem) {
+    .casa {
+        max-width: 28rem;
+    }
+
+    .janela {
+        font-size: 1rem;
+    }
+}

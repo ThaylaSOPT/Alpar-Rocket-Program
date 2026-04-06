@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #fe6347;
+    --secondary: #1a252f;
+    --white: #ffffff;
+    --bg: #f4f7f6;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg);
+    font-size: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.lado-esquerdo {
+    height: 35vh;
+    background-image: url('./images/logo.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+}
+
+.texto-logo {
+    background-color: rgba(26, 37, 47, 0.85);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+.lado-direito {
+    padding: 2rem;
+    background: var(--white);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 22rem;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 0.06rem solid #ccc;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+}
+
+.btn-principal {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-principal:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+#screen-painel {
+    padding: 1.5rem;
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.btn-sair {
+    float: right;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.perfil-card {
+    background: var(--white);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-left: 0.5rem solid var(--primary);
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+
+.usuario-item {
+    background: var(--white);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.4rem;
+    border: 0.06rem solid #eee;
+}
+
+.btn-remover-small {
+    background: transparent;
+    color: #d9534f;
+    border: 0.06rem solid #d9534f;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.erro-val {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: -0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 48rem) {
+    .container {
+        flex-direction: row;
+    }
+
+    .lado-esquerdo {
+        width: 50%;
+        height: 100vh;
+    }
+
+    .lado-direito {
+        width: 50%;
+    }
+
+    #screen-painel {
+        padding: 4rem;
+    }
+}
