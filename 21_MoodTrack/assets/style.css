@@ -1,0 +1,243 @@
+body {
+    background-color: #0b132b;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-abas {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0;
+}
+
+.btn-aba {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 8px 18px 10px;
+    transition: 0.2s;
+    margin-bottom: -1px;
+}
+
+.btn-aba:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-aba.ativo {
+    color: #5bc0be;
+    border-bottom-color: #5bc0be;
+    font-weight: 600;
+}
+
+.calendario-moldura {
+    background: #1c2541;
+    border-radius: 20px;
+}
+
+.grid-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+}
+
+.dia-nome {
+    text-align: center;
+    color: #5bc0be;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding-bottom: 10px;
+}
+
+.dia-box {
+    aspect-ratio: 1/1;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.dia-box:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dia-box.vazio {
+    visibility: hidden;
+}
+
+.dia-box.dia-atual {
+    border-color: #FDF04B;
+}
+
+.dia-box.selecionado {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #5bc0be;
+}
+
+.numero {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.esfera-memoria {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.cor-alegria {
+    background: #FDF04B;
+    box-shadow: 0 0 10px #FDF04B;
+}
+
+.cor-tristeza {
+    background: #4B92D0;
+    box-shadow: 0 0 10px #4B92D0;
+}
+
+.cor-ansiedade {
+    background: #EC8132;
+    box-shadow: 0 0 10px #EC8132;
+}
+
+.cor-vergonha {
+    background: #E8A0BF;
+    box-shadow: 0 0 10px #E8A0BF;
+}
+
+.cor-tedio {
+    background: #4E556A;
+    box-shadow: 0 0 10px #4E556A;
+}
+
+.cor-inveja {
+    background: #5FB9B3;
+    box-shadow: 0 0 10px #5FB9B3;
+}
+
+.cor-raiva {
+    background: #E23A36;
+    box-shadow: 0 0 10px #E23A36;
+}
+
+.cor-medo {
+    background: #9B68A8;
+    box-shadow: 0 0 10px #9B68A8;
+}
+
+.cor-nojinho {
+    background: #71BF45;
+    box-shadow: 0 0 10px #71BF45;
+}
+
+.painel-operacional {
+    background: #1c2541;
+    color: white;
+    min-height: 500px;
+}
+
+.grid-elenco {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.personagem-card {
+    text-align: center;
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.personagem-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.personagem-card img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.personagem-card .micro-text {
+    display: block;
+    font-size: 0.6rem;
+    margin-top: 4px;
+}
+
+.personagem-card.selecionado {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+.img-personagem {
+    width: 100px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.registro-card {
+    background: #1c2541;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: 0.2s;
+}
+
+.registro-card:hover {
+    border-color: rgba(91, 192, 190, 0.4);
+    background: #1e2a4a;
+}
+
+.img-registro-lista {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+    flex-shrink: 0;
+}
+
+.badge-data {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.numero-grande {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #5bc0be;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.barra-fundo {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra-preenchimento {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.6s ease;
+    min-width: 4px;
+}
+
+.img-progresso {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+}

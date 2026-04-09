@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="MoodTrackApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodTrack - Divertida Mente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body ng-controller="MainController">
+
+    <div class="container py-4">
+
+        <header class="text-center mb-4">
+            <h1 class="display-5 fw-bold">Painel de Controle das Emoções</h1>
+            <p class="text-info text-uppercase tracking-widest">{{mesReferencia}}</p>
+        </header>
+
+        <nav class="nav-abas mb-4">
+            <button class="btn-aba" ng-class="{'ativo': abaAtiva === 'calendario'}" ng-click="mudarAba('calendario')">
+                🗓️ Calendário
+            </button>
+            <button class="btn-aba" ng-class="{'ativo': abaAtiva === 'registros'}" ng-click="mudarAba('registros')">
+                📋 Registros
+            </button>
+            <button class="btn-aba" ng-class="{'ativo': abaAtiva === 'progresso'}" ng-click="mudarAba('progresso')">
+                📊 Progresso
+            </button>
+        </nav>
+
+        <div ng-show="abaAtiva === 'calendario'">
+            <div class="row g-4">
+
+                <div class="col-lg-8">
+                    <div class="calendario-moldura p-4 shadow">
+                        <div class="grid-calendario">
+                            <div class="dia-nome" ng-repeat="d in ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']">
+                                {{d}}
+                            </div>
+
+                            <div class="dia-box" ng-repeat="dia in diasCalendario" ng-click="focarDia(dia)"
+                                ng-class="{'vazio': dia.vazio, 'dia-atual': dia.hoje, 'selecionado': diaFocado === dia}">
+
+                                <span class="numero" ng-if="!dia.vazio">{{dia.numero}}</span>
+
+                                <div class="esfera-memoria" ng-if="dia.registro"
+                                    ng-class="'cor-' + dia.registro.emocao.slug">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card painel-operacional p-3 shadow border-0">
+
+                        <div ng-if="!diaFocado" class="text-center py-5">
+                            <p class="opacity-50">Selecione uma data no painel para gerenciar as memórias.</p>
+                        </div>
+
+                        <div ng-if="diaFocoAtivo()">
+                            <h4 class="text-center">Dia {{diaFocado.numero}} de Abril</h4>
+                            <hr class="opacity-25">
+
+                            <div ng-if="diaFocado.registro" class="text-center">
+                                <img ng-src="assets/images/{{diaFocado.registro.emocao.slug}}.png"
+                                    class="img-personagem mb-3">
+                                <h5 ng-style="{'color': diaFocado.registro.emocao.cor}">
+                                    {{diaFocado.registro.emocao.nome}}
+                                </h5>
+
+                                <div class="text-start mt-4">
+                                    <label class="small opacity-50">Observações:</label>
+                                    <p class="p-2 bg-dark rounded small">
+                                        {{diaFocado.registro.texto || 'Nenhuma nota registrada.'}}
+                                    </p>
+
+                                    <label class="small opacity-50 mt-2">Checklist de Hábitos:</label>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <span ng-repeat="h in diaFocado.registro.habitos" class="badge"
+                                            ng-class="h.feito ? 'bg-success' : 'bg-secondary opacity-25'">
+                                            {{h.nome}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-danger btn-sm mt-4 w-100"
+                                    ng-click="deletarMemoria(diaFocado)">
+                                    Apagar Registro
+                                </button>
+                            </div>
+
+                            <div ng-if="!diaFocado.registro">
+                                <p class="small mb-2">Quem está no console de comando?</p>
+                                <div class="grid-elenco">
+                                    <div class="personagem-card" ng-repeat="emo in elencoCompleto"
+                                        ng-click="form.emocao = emo"
+                                        ng-class="{'selecionado': form.emocao.id === emo.id}">
+                                        <img ng-src="assets/images/{{emo.slug}}.png">
+                                        <span class="micro-text">{{emo.nome}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <p class="small mb-2">Hábitos:</p>
+                                    <div class="form-check" ng-repeat="h in listaHabitos">
+                                        <input class="form-check-input" type="checkbox" ng-model="h.feito"
+                                            id="hab-{{$index}}">
+                                        <label class="form-check-label small" for="hab-{{$index}}">{{h.nome}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <p class="small mb-1">Notas:</p>
+                                    <textarea class="form-control bg-dark text-white border-secondary"
+                                        ng-model="form.texto" rows="2"></textarea>
+                                </div>
+
+                                <button class="btn btn-info w-100 mt-4 fw-bold" ng-click="confirmarRegistro(diaFocado)">
+                                    Salvar Memória
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="abaAtiva === 'registros'">
+
+            <div class="card painel-operacional p-3 shadow border-0 mb-4">
+                <h5 class="mb-3 opacity-75">🔍 Filtrar Registros</h5>
+                <div class="row g-3 align-items-end">
+
+                    <div class="col-sm-4">
+                        <label class="small opacity-50 mb-1">Por Emoção</label>
+                        <select class="form-select bg-dark text-white border-secondary" ng-model="filtros.emocaoId">
+                            <option value="">Todas as emoções</option>
+                            <option ng-repeat="emo in elencoCompleto" value="{{emo.id}}">
+                                {{emo.nome}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="small opacity-50 mb-1">Por Dia</label>
+                        <input type="number" class="form-control bg-dark text-white border-secondary"
+                            placeholder="Ex: 15" min="1" max="30" ng-model="filtros.dia">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button class="btn btn-outline-secondary w-100" ng-click="limparFiltros()">
+                            Limpar Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="registrosFiltrados().length === 0" class="text-center py-5 opacity-50">
+                <p>Nenhuma memória encontrada.</p>
+                <p class="small">
+                    <span ng-if="diasComRegistro().length === 0">
+                        Volte ao Calendário e registre seu primeiro dia!
+                    </span>
+                    <span ng-if="diasComRegistro().length > 0">
+                        Tente outros filtros.
+                    </span>
+                </p>
+            </div>
+
+            <div class="lista-registros">
+                <div class="registro-card p-3 mb-3 shadow" ng-repeat="dia in registrosFiltrados() | orderBy: 'numero'">
+
+                    <div class="d-flex align-items-center gap-3">
+                        <img ng-src="assets/images/{{dia.registro.emocao.slug}}.png" class="img-registro-lista">
+
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <span class="badge-data">📅 {{formatarData(dia.numero)}}</span>
+                                    <h6 class="mt-1 mb-0" ng-style="{'color': dia.registro.emocao.cor}">
+                                        {{dia.registro.emocao.nome}}
+                                    </h6>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-wrap gap-1 mt-2">
+                                <span ng-repeat="h in dia.registro.habitos" class="badge"
+                                    ng-class="h.feito ? 'bg-success' : 'bg-secondary opacity-25'">
+                                    {{h.nome}}
+                                </span>
+                            </div>
+
+                            <p class="small opacity-50 mt-2 mb-0 fst-italic" ng-if="dia.registro.texto">
+                                "{{dia.registro.texto}}"
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="abaAtiva === 'progresso'">
+
+            <div ng-if="progresso.total === 0" class="text-center py-5 opacity-50">
+                <p>Ainda não há registros para analisar.</p>
+                <p class="small">Volte ao Calendário e registre seus dias!</p>
+            </div>
+
+            <div ng-if="progresso.total > 0">
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-md-4">
+                        <div class="card painel-operacional p-3 text-center border-0 shadow">
+                            <div class="numero-grande">{{progresso.total}}</div>
+                            <p class="small opacity-50 mb-0">dias registrados</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card painel-operacional p-3 text-center border-0 shadow">
+                            <div class="numero-grande">{{progresso.pctHabitos}}%</div>
+                            <p class="small opacity-50 mb-0">hábitos cumpridos</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card painel-operacional p-3 text-center border-0 shadow">
+                            <h6 class="mb-1 small opacity-50">Emoção mais frequente</h6>
+                            <span class="fw-bold" ng-style="{'color': progresso.emocaoFreqCor}">
+                                {{progresso.emocaoMaisFreq}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card painel-operacional p-4 shadow border-0 mb-4">
+                    <h5 class="mb-3 opacity-75">📌 Desempenho por Hábito</h5>
+
+                    <div class="mb-3" ng-repeat="h in progresso.statsHabitos">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>{{h.nome}}</span>
+                            <span class="opacity-50">{{h.pct}}%</span>
+                        </div>
+                        <div class="barra-fundo">
+                            <div class="barra-preenchimento" ng-style="{'width': h.pct + '%', 'background': '#5bc0be'}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card painel-operacional p-4 shadow border-0">
+                    <h5 class="mb-3 opacity-75">🧠 Distribuição das Emoções</h5>
+
+                    <div class="mb-3" ng-repeat="e in progresso.distribuicao">
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <img ng-src="assets/images/{{e.slug}}.png" class="img-progresso">
+                            <span class="small flex-grow-1">{{e.nome}}</span>
+                            <span class="small opacity-50">{{e.quantidade}}x · {{e.pct}}%</span>
+                        </div>
+                        <div class="barra-fundo">
+                            <div class="barra-preenchimento" ng-style="{'width': e.pct + '%', 'background': e.cor}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="assets/app.js"></script>
+</body>
+
+</html>
